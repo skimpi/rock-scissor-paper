@@ -1,14 +1,83 @@
 <!DOCTYPE html>
 <html>
 <header>
-    <title>sten sax påse</title>
+    <title>sten sax pase</title>
 </header>
 
 <body>
     <script>
         // javascript
 
+        function computerPlay(game) {
+            game = Math.floor(Math.random() * 3);
+            switch(game) {
+                case 0:
+                  game = 'rock';
+                  break;
+                case 1:
+                  game = 'paper';
+                  break;
+                case 2:
+                  game = 'scissor';
+                  break;
+                default:
+                  game = 'error';
+            }
+            return game;
+
+        };
         
+        function playerInput(Input) {
+          Input = Input.toLowerCase();
+          if (Input === 'rock' || Input === 'paper' || Input === 'scissor') {
+            return Input;
+          } else {
+            console.log('type either rock, paper or scissor');
+          }
+        };
+
+        function playRound(playerSelection, computerSelection) {
+          if (playerSelection === computerSelection) {
+            return 'the game is a tie!';
+
+          } 
+          if (playerSelection === 'scissor') {
+              if (computerSelection === 'rock'){
+                return 'lose';
+            } else {
+              return 'win!';
+            }
+          } 
+          
+          if (playerSelection === 'rock') {
+              if (computerSelection === 'paper') {
+                  return 'lose';
+              } else{
+                return 'win!';
+              }
+          }
+          
+          if (playerSelection === 'paper') {
+              if (computerSelection === 'scissor') {
+                return 'lose';
+              } else {
+                return 'win!';
+
+              } 
+            }
+        };
+
+
+        const playGame = () => {
+          const playerSelection = playerInput('paper');
+          const computerSelection = computerPlay();
+          console.log('You threw ' + playerSelection);
+          console.log('Opponent threw ' + computerSelection);
+
+          console.log(playRound(playerSelection, computerSelection));
+        };
+
+        playGame()
     
     
     </script>
